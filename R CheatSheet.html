@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R Survival Kit</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f4f7f9;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            background: #eef2f7;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+        }
+        .function-block {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .desc {
+            margin-bottom: 8px;
+        }
+        .func-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .lib-name {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .comment {
+            color: #75715e;
+        }
+        @media print {
+            body { background: white; }
+            h2 { background: #eee; page-break-after: avoid; }
+            .function-block { page-break-inside: avoid; border: 1px solid #eee; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>R Survival Kit</h1>
+
+    <h2>🆘 Operadores e Ajuda (R Base)</h2>
+    
+    <div class="function-block">
+        <div class="desc"><span class="func-name">?</span> ou <span class="func-name">help()</span> (<span class="lib-name">base</span>): Abre a página oficial de documentação de uma função específica</div>
+        <code>?mean <span class="comment"># abre o painel de ajuda explicando como usar a função mean</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">??</span> ou <span class="func-name">help.search()</span> (<span class="lib-name">base</span>): Pesquisa por um termo em toda a documentação de todos os pacotes instalados</div>
+        <code>??concordance <span class="comment"># busca qualquer função ou pacote que mencione "concordance"</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">==</span> e <span class="func-name">!=</span> (<span class="lib-name">base</span>): Operadores lógicos de "Igual a" e "Diferente de" (is not)</div>
+        <code>filter(df, sexo == "F" & status != "Inativo") <span class="comment"># filtra onde sexo é F e status não é Inativo</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">>=</span> e <span class="func-name"><=</span> (<span class="lib-name">base</span>): Operadores lógicos de "Maior/Menor ou igual a"</div>
+        <code>filter(df, idade >= 18) <span class="comment"># filtra observações onde a idade é maior ou igual a 18</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">%%</span> (<span class="lib-name">base</span>): Operador de módulo (retorna o resto de uma divisão)</div>
+        <code>10 %% 3 <span class="comment"># retorna 1, pois 10 dividido por 3 tem resto 1</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">%in%</span> (<span class="lib-name">base</span>): Operador de pertencimento (verifica se um valor está dentro de um vetor)</div>
+        <code>filter(df, estado %in% c("RS", "SC", "PR")) <span class="comment"># mantém linhas onde o estado é um desses três</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">|></span> ou <span class="func-name">%>%</span> (<span class="lib-name">base / magrittr</span>): Operador Pipe (passa o resultado da esquerda para a função da direita)</div>
+        <code>df |> filter(idade > 18) |> summarize(media = mean(salario)) <span class="comment"># encadeia operações de forma fluida</span></code>
+    </div>
+
+    <h2>🗂️ Manipulação de Dados, Importação e Exportação (Tidyverse, haven, rvest)</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">tibble</span> (<span class="lib-name">tibble</span>): Cria um data frame moderno, otimizado e fácil de ler</div>
+        <code>tibble(x = 1:5, y = x * 2) <span class="comment"># cria uma tabela com as colunas x e y</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">read_csv</span> (<span class="lib-name">readr</span>): Lê um arquivo de texto separado por vírgulas para um data frame</div>
+        <code>read_csv("dados.csv") <span class="comment"># importa o arquivo dados.csv para o R</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">write_csv</span> (<span class="lib-name">readr</span>): Salva um data frame em um arquivo CSV no computador</div>
+        <code>write_csv(df, "resultado.csv") <span class="comment"># exporta o data frame df para resultado.csv</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">read_dta</span> (<span class="lib-name">haven</span>): Importa conjuntos de dados de softwares como SPSS, Stata e SAS</div>
+        <code>read_dta("banco.dta") <span class="comment"># lê arquivo nativo do Stata mantendo os rótulos originais</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">read_html</span> (<span class="lib-name">rvest</span>): Realiza web scraping para extrair dados estruturados da internet</div>
+        <code>read_html(url) |> html_elements(".classe") <span class="comment"># raspa os elementos HTML de uma página</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">filter</span> (<span class="lib-name">dplyr</span>): Filtra linhas de um data frame com base em condições lógicas</div>
+        <code>filter(df, idade > 18) <span class="comment"># mantém apenas as linhas onde a idade é maior que 18</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">arrange</span> (<span class="lib-name">dplyr</span>): Ordena as linhas de um data frame com base em uma ou mais colunas</div>
+        <code>arrange(df, desc(salario)) <span class="comment"># ordena o data frame pelo salário em ordem decrescente</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">select</span> (<span class="lib-name">dplyr</span>): Seleciona e filtra colunas (variáveis) específicas de um data frame</div>
+        <code>select(df, nome, idade) <span class="comment"># mantém apenas as colunas nome e idade no resultado</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">mutate</span> (<span class="lib-name">dplyr</span>): Cria novas colunas ou modifica colunas existentes</div>
+        <code>mutate(df, dobro = valor * 2) <span class="comment"># cria uma nova coluna 'dobro' com o valor x2</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">summarize</span> (<span class="lib-name">dplyr</span>): Resume os dados reduzindo-os a um único valor (ex: média, soma)</div>
+        <code>summarize(df, media = mean(valor)) <span class="comment"># calcula e retorna a média da coluna valor</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">group_by</span> (<span class="lib-name">dplyr</span>): Agrupa os dados para que operações sejam feitas por grupo</div>
+        <code>group_by(df, categoria) <span class="comment"># agrupa o data frame pela variável categoria</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">count</span> (<span class="lib-name">dplyr</span>): Conta rapidamente o número de observações para cada grupo</div>
+        <code>count(df, sexo) <span class="comment"># retorna a quantidade total de linhas para cada sexo</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">left_join</span> (<span class="lib-name">dplyr</span>): Junta dois data frames mantendo todas as linhas do primeiro</div>
+        <code>left_join(df1, df2, by = "id") <span class="comment"># adiciona colunas do df2 ao df1 cruzando pela chave id</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">pivot_longer</span> (<span class="lib-name">tidyr</span>): Transforma múltiplas colunas em linhas (formato longo)</div>
+        <code>pivot_longer(df, cols = a:c, names_to = "k", values_to = "v") <span class="comment"># comprime as colunas em linhas</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">pivot_wider</span> (<span class="lib-name">tidyr</span>): Transforma linhas em múltiplas colunas (formato largo)</div>
+        <code>pivot_wider(df, names_from = k, values_from = v) <span class="comment"># espalha os valores em novas colunas</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">separate</span> (<span class="lib-name">tidyr</span>): Separa o texto de uma única coluna em várias colunas</div>
+        <code>separate(df, data, into = c("ano", "mes", "dia"), sep = "-") <span class="comment"># divide a coluna data em três</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">unite</span> (<span class="lib-name">tidyr</span>): Combina o conteúdo de várias colunas em uma única coluna</div>
+        <code>unite(df, data_full, ano, mes, dia, sep = "-") <span class="comment"># une as três colunas com traço</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">drop_na</span> (<span class="lib-name">tidyr</span>): Remove todas as linhas que contêm valores ausentes (NA)</div>
+        <code>drop_na(df) <span class="comment"># exclui qualquer linha do data frame que possua NA</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">map</span> (<span class="lib-name">purrr</span>): Aplica uma função a cada elemento de uma lista ou vetor</div>
+        <code>map(lista, mean) <span class="comment"># retorna uma lista com a média calculada para cada elemento</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">str_detect</span> (<span class="lib-name">stringr</span>): Verifica se um padrão de texto existe dentro de uma string</div>
+        <code>str_detect(texto, "R") <span class="comment"># retorna TRUE para os elementos que contêm "R"</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">str_replace</span> (<span class="lib-name">stringr</span>): Substitui a primeira ocorrência de um texto por outro</div>
+        <code>str_replace(texto, "ruim", "bom") <span class="comment"># substitui "ruim" por "bom" na string</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">ymd</span> (<span class="lib-name">lubridate</span>): Converte texto em data reconhecida pelo R no formato Ano-Mês-Dia</div>
+        <code>ymd("2023-12-31") <span class="comment"># transforma string na data oficial 2023-12-31</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">fct_reorder</span> (<span class="lib-name">forcats</span>): Reordena níveis de um fator com base em outra variável</div>
+        <code>fct_reorder(fator, valores, mean) <span class="comment"># ordena o fator pela média dos valores</span></code>
+    </div>
+
+    <h2>📊 Visualização de Dados e Relatórios (ggplot2, ggpubr, patchwork, gtsummary, eclipseplot)</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">ggplot</span> (<span class="lib-name">ggplot2</span>): Inicializa um objeto gráfico e define os dados utilizados</div>
+        <code>ggplot(data = df) <span class="comment"># cria a base vazia do gráfico apontando para o data frame</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">aes</span> (<span class="lib-name">ggplot2</span>): Define a estética, mapeando as variáveis aos eixos e cores</div>
+        <code>aes(x = idade, y = salario) <span class="comment"># mapeia idade no eixo x e salario no eixo y</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">geom_point</span> (<span class="lib-name">ggplot2</span>): Adiciona uma camada geométrica de pontos (dispersão)</div>
+        <code>geom_point() <span class="comment"># plota um gráfico de dispersão com os dados definidos</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">geom_line</span> (<span class="lib-name">ggplot2</span>): Adiciona uma camada geométrica de linhas conectadas</div>
+        <code>geom_line() <span class="comment"># conecta pontos sequencialmente (útil para séries temporais)</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">geom_histogram</span> (<span class="lib-name">ggplot2</span>): Cria um histograma para visualizar distribuições contínuas</div>
+        <code>geom_histogram(binwidth = 5) <span class="comment"># cria histograma com blocos de tamanho 5</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">geom_boxplot</span> (<span class="lib-name">ggplot2</span>): Cria um gráfico de caixa para exibir distribuições e outliers</div>
+        <code>geom_boxplot() <span class="comment"># exibe a mediana, quartis e outliers da variável</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">facet_wrap</span> (<span class="lib-name">ggplot2</span>): Divide o gráfico em múltiplos painéis por categoria</div>
+        <code>facet_wrap(~ categoria) <span class="comment"># cria um mini-gráfico separado para cada categoria</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">ggboxplot</span> (<span class="lib-name">ggpubr</span>): Cria boxplots focados em publicações científicas</div>
+        <code>ggboxplot(df, x = "grupo", y = "valor", add = "jitter") <span class="comment"># boxplot com pontos sobrepostos</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">patchwork</span> (<span class="lib-name">patchwork</span>): Combina múltiplos gráficos do ggplot2 em uma única figura</div>
+        <code>grafico1 + grafico2 <span class="comment"># alinha os dois gráficos lado a lado</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">tbl_summary</span> (<span class="lib-name">gtsummary</span>): Cria tabelas prontas para publicação (Tabela 1)</div>
+        <code>tbl_summary(dados, by = grupo) <span class="comment"># gera tabela descritiva elegante por grupo</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">eclipse_plot</span> (<span class="lib-name">eclipseplot</span>): Cria visualizações em formato de eclipse para ensaios</div>
+        <code>eclipse_plot(dados) <span class="comment"># gera um gráfico de eclipse para interpretação de resultados</span></code>
+    </div>
+
+    <h2>🏗️ Estruturas e R Base</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">c</span> (<span class="lib-name">base</span>): Combina valores simples ou elementos em um único vetor</div>
+        <code>c(1, 2, 3, 4) <span class="comment"># cria um vetor numérico com 4 elementos</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">data.frame</span> (<span class="lib-name">base</span>): Cria uma estrutura tabular clássica para armazenar dados mistos</div>
+        <code>data.frame(id = 1:3, nome = c("A", "B", "C")) <span class="comment"># cria data frame tradicional</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">matrix</span> (<span class="lib-name">base</span>): Cria uma matriz matemática bidimensional (mesmo tipo de dado)</div>
+        <code>matrix(1:9, nrow = 3, ncol = 3) <span class="comment"># cria uma matriz 3x3 preenchida de 1 a 9</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">list</span> (<span class="lib-name">base</span>): Cria uma lista que pode conter diferentes tipos e tamanhos de objetos</div>
+        <code>list(numero = 1, texto = "A", vetor = c(1, 2)) <span class="comment"># agrega tipos diferentes</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">factor</span> (<span class="lib-name">base</span>): Converte um vetor em dados categóricos</div>
+        <code>factor(c("baixo", "alto", "baixo")) <span class="comment"># define níveis para as categorias</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">summary</span> (<span class="lib-name">base</span>): Retorna um resumo estatístico rápido do objeto</div>
+        <code>summary(df) <span class="comment"># mostra resumo (média, quartis) para as colunas</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">str</span> (<span class="lib-name">base</span>): Exibe a estrutura interna de um objeto (tipos de colunas)</div>
+        <code>str(df) <span class="comment"># mostra o tipo de cada coluna e amostra inicial</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">head</span> (<span class="lib-name">base</span>): Retorna as primeiras linhas de um objeto</div>
+        <code>head(df, n = 5) <span class="comment"># exibe apenas as 5 primeiras linhas</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">table</span> (<span class="lib-name">base</span>): Cria uma tabela de contingência (contagem de frequências)</div>
+        <code>table(df$categoria) <span class="comment"># conta quantas vezes cada categoria aparece</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">tapply</span> (<span class="lib-name">base</span>): Aplica uma função estatística a subconjuntos de um vetor</div>
+        <code>tapply(df$salario, df$cargo, mean) <span class="comment"># média salarial por cargo</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">apply</span> (<span class="lib-name">base</span>): Aplica função nas linhas ou colunas de matriz/data frame</div>
+        <code>apply(matriz, 1, sum) <span class="comment"># calcula a soma de cada linha (margem 1)</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">lapply</span> (<span class="lib-name">base</span>): Aplica função sobre lista/vetor e retorna sempre uma lista</div>
+        <code>lapply(lista, length) <span class="comment"># retorna o comprimento de cada item na lista</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">plot</span> (<span class="lib-name">graphics</span>): Função genérica nativa para criar gráficos</div>
+        <code>plot(x, y) <span class="comment"># cria um gráfico simples de dispersão x vs y</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">seq</span> (<span class="lib-name">base</span>): Gera uma sequência regular de números</div>
+        <code>seq(from = 1, to = 10, by = 2) <span class="comment"># gera: 1, 3, 5, 7, 9</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">rep</span> (<span class="lib-name">base</span>): Replica elementos de vetores ou listas</div>
+        <code>rep(x = 1, times = 5) <span class="comment"># cria vetor com o número 1 repetido 5 vezes</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">paste</span> (<span class="lib-name">base</span>): Concatena vetores de texto com um separador</div>
+        <code>paste("Olá", "Mundo", sep = " ") <span class="comment"># retorna "Olá Mundo"</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">ifelse</span> (<span class="lib-name">base</span>): Avalia condição lógica de forma vetorizada</div>
+        <code>ifelse(x > 0, "Positivo", "Negativo") <span class="comment"># retorna valor baseado em x</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">subset</span> (<span class="lib-name">base</span>): Filtra elementos de vetores ou data frames</div>
+        <code>subset(df, idade > 30) <span class="comment"># retorna linhas onde idade > 30</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">is.na</span> (<span class="lib-name">base</span>): Verifica quais valores são ausentes (NA)</div>
+        <code>is.na(x) <span class="comment"># retorna TRUE/FALSE para a posição de cada NA</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">na.omit</span> (<span class="lib-name">base</span>): Remove linhas com valores ausentes do conjunto</div>
+        <code>na.omit(df) <span class="comment"># limpa o data frame de qualquer linha com NA</span></code>
+    </div>
+
+    <h2>🔬 Modelagem, Estatística Médica, Meta-Análise e Inferência Causal</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">lm</span> (<span class="lib-name">stats</span>): Ajusta um modelo de regressão linear simples ou múltipla</div>
+        <code>lm(y ~ x1 + x2, data = df) <span class="comment"># ajusta y em função de x1 e x2</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">glm</span> (<span class="lib-name">stats</span>): Ajusta modelos lineares generalizados (Logística, Poisson)</div>
+        <code>glm(y ~ x, family = binomial, data = df) <span class="comment"># regressão logística</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">t.test</span> (<span class="lib-name">stats</span>): Realiza o teste estatístico T de Student para médias</div>
+        <code>t.test(x, y) <span class="comment"># compara médias de x e y para diferença significativa</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">tidy</span> (<span class="lib-name">broom</span>): Limpa a saída de modelos em tabelas arrumadas (tibbles)</div>
+        <code>tidy(modelo_logistico) <span class="comment"># extrai coeficientes e p-valores em formato tabular</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">lmer</span> (<span class="lib-name">lme4</span>): Ajusta modelos de efeitos mistos (hierárquicos/longitudinais)</div>
+        <code>lmer(resultado ~ tratamento + (1 | paciente), data = d) <span class="comment"># intercepto aleatório</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">cac.raw4</span> (<span class="lib-name">irrCAC</span>): Calcula coeficientes de concordância (Gwet AC1)</div>
+        <code>cac.raw4(dados) <span class="comment"># estatísticas de concordância para múltiplos avaliadores</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">rma</span> (<span class="lib-name">metafor</span>): Ferramentas avançadas para meta-análises e meta-regressões</div>
+        <code>rma(yi, vi, data = dados) <span class="comment"># modelo de meta-análise de efeitos aleatórios</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">metabin</span> (<span class="lib-name">meta</span>): Realiza meta-análises para desfechos binários (OR, RR)</div>
+        <code>metabin(e.ev, e.n, c.ev, c.n, data = d) <span class="comment"># pooling de efeitos binários</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">netmeta</span> (<span class="lib-name">netmeta</span>): Conduz meta-análises de rede para comparações indiretas</div>
+        <code>netmeta(TE, seTE, treat1, treat2, studlab, data = d) <span class="comment"># estima efeitos em rede</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">trial_sequence</span> (<span class="lib-name">TrialEmulation</span>): Emula ensaios clínicos a partir de dados observacionais</div>
+        <code>trial_sequence(dados) <span class="comment"># prepara dados longitudinais para inferência causal</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">pmApiRequest</span> (<span class="lib-name">pubmedR</span>): Busca e extrai metadados de artigos diretamente do PubMed</div>
+        <code>pmApiRequest(query = "RCT", limit = 100) <span class="comment"># extrai dados bibliométricos de 100 artigos</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">dagitty</span> (<span class="lib-name">dagitty</span>): Cria e analisa Grafos Acíclicos Direcionados (DAGs)</div>
+        <code>dagitty("dag { X -> Y; Z -> X; Z -> Y }") <span class="comment"># desenha DAG para identificar confusão</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">survfit</span> (<span class="lib-name">survival</span>): Calcula curvas de sobrevida (Kaplan-Meier)</div>
+        <code>survfit(Surv(tempo, evento) ~ grupo, data = d) <span class="comment"># estima sobrevida por grupo</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">ggsurvplot</span> (<span class="lib-name">survminer</span>): Plota curvas de sobrevida com tabelas de risco</div>
+        <code>ggsurvplot(fit, data = d, risk.table = TRUE) <span class="comment"># gráfico de KM padrão científico</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">epi.2by2</span> (<span class="lib-name">epiR</span>): Calcula medidas de associação epidemiológica (RR, OR)</div>
+        <code>epi.2by2(tabela) <span class="comment"># calcula riscos e frações atribuíveis</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">matchit</span> (<span class="lib-name">MatchIt</span>): Pareamento por escore de propensão (Propensity Score)</div>
+        <code>matchit(tratam ~ idade + sexo, data = d) <span class="comment"># reduz viés em dados observacionais</span></code>
+    </div>
+
+</body>
+
+<h2 style="color: #2980b9; border-left: 5px solid #3498db;"><span>🔗</span> Links Úteis</h2>
+
+<div class="function-block">
+    <div class="desc"><strong>From Data to Viz</strong>: Um guia interativo que te ajuda a escolher o melhor gráfico para o seu tipo de dado.</div>
+    <code><a href="https://www.data-to-viz.com/" target="_blank" style="color: #3498db; text-decoration: none;">https://www.data-to-viz.com/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Posit (RStudio) Cheat Sheets</strong>: Repositório oficial com as melhores colinhas de ggplot2, dplyr, tidyr e mais.</div>
+    <code><a href="https://rstudio.github.io/cheatsheets/" target="_blank" style="color: #3498db; text-decoration: none;">https://rstudio.github.io/cheatsheets/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>The Epidemiologist R Handbook</strong>: A "Bíblia" do R para epidemiologistas. Tudo sobre surtos, curvas e análise de dados médicos.</div>
+    <code><a href="https://epirhandbook.com/" target="_blank" style="color: #3498db; text-decoration: none;">https://epirhandbook.com/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Exercism (R Track)</strong>: Aprenda R resolvendo problemas práticos e recebendo feedback.</div>
+    <code><a href="https://exercism.org/tracks/r" target="_blank" style="color: #3498db; text-decoration: none;">https://exercism.org/tracks/r</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>R for Data Science (2e)</strong>: O livro definitivo de Hadley Wickham sobre o ecossistema Tidyverse.</div>
+    <code><a href="https://r4ds.hadley.nz/" target="_blank" style="color: #3498db; text-decoration: none;">https://r4ds.hadley.nz/</a></code>
+</div>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Survival Kit</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f4f7f9;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #d35400;
+            margin-top: 50px;
+            background: #fdf2e9;
+            padding: 12px 18px;
+            border-radius: 5px;
+            border-left: 6px solid #e67e22;
+            display: flex;
+            align-items: center;
+        }
+        h2 span { margin-right: 12px; }
+        h3 {
+            color: #2980b9;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 35px;
+        }
+        .function-block {
+            background: white;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
+        }
+        .desc {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        .func-name {
+            font-weight: bold;
+            color: #c0392b;
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+        .lib-name {
+            font-style: italic;
+            color: #2980b9;
+            font-weight: 600;
+        }
+        code {
+            display: block;
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 12px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.92em;
+            overflow-x: auto;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+        .comment {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        .concept-card {
+            background: #eef2f7;
+            border: 1px solid #d0dbe5;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Python Survival Kit 🐍</h1>
+<p style="text-align: center; font-style: italic;">2026</p>
+
+<h2><span>🔢</span> Operadores, Lógica e Controle</h2>
+
+<div class="concept-card">
+    <strong>Operadores Essenciais:</strong> <code>==</code> (Igual), <code>!=</code> (Diferente), <code>></code> (Maior), <code><</code> (Menor), <code>//</code> (Divisão Inteira), <code>%</code> (Resto), <code>**</code> (Potência).<br>
+    <strong>Lógica:</strong> <code>and</code>, <code>or</code>, <code>not</code>, <code>in</code> (está contido), <code>is</code> (identidade de memória).
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">if/elif/else</span> (<span class="lib-name">Python Base</span>): Estrutura de decisão lógica</div>
+    <code>if p_valor < 0.05:
+    status = "Significativo"
+elif p_valor < 0.1:
+    status = "Tendência"
+else:
+    status = "NS" <span class="comment"># define rótulo baseado na evidência</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">list comprehension</span> (<span class="lib-name">Python Fluente</span>): Criação concisa de listas filtradas</div>
+    <code>[x.upper() for x in colunas if "ID" not in x] <span class="comment"># formata nomes de colunas</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">match/case</span> (<span class="lib-name">Python 3.10+</span>): Pattern matching estrutural para múltiplas condições</div>
+    <code>match resultado:
+    case {"status": "ok", "valor": v}: print(v)
+    case {"status": "erro"}: print("Falha") <span class="comment"># desempacota e testa simultaneamente</span></code>
+</div>
+
+<h2><span>📦</span> Estruturas de Dados e Python Fluente</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">namedtuple</span> (<span class="lib-name">collections</span>): Tuplas com nomes de campo (objetos leves)</div>
+    <code>Amostra = namedtuple('Amostra', ['id', 'grupo', 'desfecho'])
+obs = Amostra(1, 'A', 0) <span class="comment"># acessível via obs.grupo</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">zip / enumerate</span> (<span class="lib-name">Python Base</span>): Iteração paralela e com índices</div>
+    <code>for i, (par1, par2) in enumerate(zip(lista1, lista2)):
+    print(f"Par {i}: {par1}, {par2}") <span class="comment"># une listas e conta iterações</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">__getitem__ / __len__</span> (<span class="lib-name">Métodos Especiais</span>): Tornam objetos "Pythonicos" (fatiáveis e mensuráveis)</div>
+    <code>def __len__(self): return len(self._dados) <span class="comment"># permite usar len(objeto)</span></code>
+</div>
+
+<h2><span>🏗️</span> Programação Orientada a Objetos (Classes)</h2>
+
+<div class="concept-card">
+    <strong>Classe:</strong> Um molde (projeto). <strong>Objeto:</strong> Uma instância do molde.<br>
+    <strong>Atributo:</strong> Variável interna (característica). <strong>Método:</strong> Função interna (comportamento).
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">class / __init__</span> (<span class="lib-name">POO</span>): Define a estrutura e inicializa o estado do objeto</div>
+    <code>class EstudoClinico:
+    def __init__(self, n, fase):
+        self.n = n <span class="comment"># Atributo de instância</span>
+        self.fase = fase
+    
+    def reportar(self):
+        return f"Fase {self.fase} com N={self.n}" <span class="comment"># Método</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">@property</span> (<span class="lib-name">Decorador</span>): Transforma um método em um atributo de leitura (calculado)</div>
+    <code>@property
+def taxa_sucesso(self):
+    return self.eventos / self.n <span class="comment"># acessado como objeto.taxa_sucesso</span></code>
+</div>
+
+<h2><span>📊</span> Manipulação e Análise (Pandas & NumPy)</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">read_csv / to_excel</span> (<span class="lib-name">pandas</span>): I/O de dados de alta performance</div>
+    <code>df = pd.read_csv("data.csv", sep=";", encoding="latin-1") <span class="comment"># importa base médica</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">loc / iloc</span> (<span class="lib-name">pandas</span>): Seleção por rótulo ou por posição</div>
+    <code>df.loc[df['idade'] > 60, ['id', 'status']] <span class="comment"># filtra linhas e colunas</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">groupby / agg</span> (<span class="lib-name">pandas</span>): Agregamento e sumário estatístico por grupo</div>
+    <code>df.groupby('braço').agg({'PAS': ['mean', 'std'], 'evento': 'sum'}) <span class="comment"># tabela descritiva</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">melt / pivot_table</span> (<span class="lib-name">pandas</span>): Reshape de dados (Largo vs. Longo)</div>
+    <code>df_longo = pd.melt(df, id_vars=['id'], value_vars=['t0', 't1', 't2']) <span class="comment"># prepara para Mixed Models</span></code>
+</div>
+
+<h2><span>🔬</span> Bioestatística, Sobrevivência e Meta-Pesquisa</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">ttest_ind / f_oneway</span> (<span class="lib-name">scipy.stats</span>): Testes de hipótese paramétricos</div>
+    <code>stats.ttest_ind(grupo_a, grupo_b, equal_var=False) <span class="comment"># Teste t de Welch</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">logit / ols</span> (<span class="lib-name">statsmodels</span>): Modelagem de regressão via fórmulas (estilo R)</div>
+    <code>smf.logit("obito ~ tratamento + idade + bmi", data=df).fit().summary() <span class="comment"># calcula OR ajustada</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">KaplanMeierFitter</span> (<span class="lib-name">lifelines</span>): Estima a função de sobrevivência</div>
+    <code>kmf.fit(duracao, event_observed=censura).plot_survival_function() <span class="comment"># gera curva de KM</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">CoxPHFitter</span> (<span class="lib-name">lifelines</span>): Regressão de riscos proporcionais de Cox</div>
+    <code>cph.fit(df, duration_col='tempo', event_col='evento') <span class="comment"># extrai Hazard Ratio (HR)</span></code>
+</div>
+
+<h2><span>🕸️</span> Inferência Causal e Modelagem Gráfica</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">CausalModel</span> (<span class="lib-name">dowhy</span>): Framework para estimativa de efeitos causais</div>
+    <code>model = CausalModel(data=df, treatment='T', outcome='Y', common_causes=['W'])
+model.identify_effect() <span class="comment"># encontra o caminho causal via backdoor criterion</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">DAG</span> (<span class="lib-name">causalgraphicalmodels</span>): Definição e visualização de grafos acíclicos</div>
+    <code>dag = DAG(nodes=["X", "Y", "Z"], edges=[("X", "Y"), ("Z", "X"), ("Z", "Y")])
+dag.draw() <span class="comment"># visualiza estruturas de confusão e colisão</span></code>
+</div>
+
+<h2><span>🖥️</span> Interfaces de Usuário (Web & Desktop)</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">sidebar / slider / button</span> (<span class="lib-name">streamlit</span>): Criação de Dashboards interativos</div>
+    <code>st.title("Calculadora de Risco")
+valor = st.sidebar.number_input("Digite o IMC")
+if st.button("Calcular"): st.write(f"Risco: {valor * 1.5}") <span class="comment"># app web instantâneo</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">Tk / Label / Entry</span> (<span class="lib-name">tkinter</span>): Interface desktop nativa</div>
+    <code>janela = Tk()
+Label(janela, text="Nome do Paciente:").pack()
+Entry(janela).pack()
+janela.mainloop() <span class="comment"># loop de interface local</span></code>
+</div>
+
+<h2><span>🌐</span> APIs, Web Scraping e Dados</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">requests.get / .json()</span> (<span class="lib-name">requests</span>): Consumo de dados de APIs externas</div>
+    <code>r = requests.get("https://clinicaltrials.gov/api/v2/studies?query.term=COVID-19")
+dados = r.json() <span class="comment"># captura metadados de ensaios clínicos</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">BeautifulSoup</span> (<span class="lib-name">bs4</span>): Extração de dados de páginas HTML (Scraping)</div>
+    <code>soup = BeautifulSoup(html, 'html.parser')
+links = [a['href'] for a in soup.find_all('a', href=True)] <span class="comment"># minera links de artigos</span></code>
+</div>
+
+<h2><span>🛠️</span> Utilitários e Organização de Projeto</h2>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">Path</span> (<span class="lib-name">pathlib</span>): Manipulação de arquivos e caminhos agnóstica ao SO</div>
+    <code>base_path = Path("projeto/dados")
+arq = base_path / "pacientes.csv" <span class="comment"># concatena caminhos de forma segura</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">re.search / re.sub</span> (<span class="lib-name">re</span>): Expressões regulares para limpeza de texto</div>
+    <code>limpo = re.sub(r"\[\d+\]", "", texto_artigo) <span class="comment"># remove citações estilo [1, 2]</span></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><span class="func-name">logging.basicConfig</span> (<span class="lib-name">logging</span>): Registro de logs para monitoramento de scripts</div>
+    <code>logging.info("Processamento da base iniciado") <span class="comment"># gera rastro para depuração</span></code>
+</div>
+
+
+<h2><span>🔗</span> Links Úteis</h2>
+
+<div class="function-block">
+    <div class="desc"><strong>Awesome Python (GitHub)</strong>: A lista definitiva. Repositório que cataloga as melhores bibliotecas, frameworks e softwares para quase qualquer tarefa em Python.</div>
+    <code><a href="https://github.com/vinta/awesome-python" target="_blank" style="color: #3498db; text-decoration: none;">https://github.com/vinta/awesome-python</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Streamlit Cheat Sheet</strong>: Guia rápido e interativo com todos os comandos para criar web apps de dados e dashboards médicos em minutos.</div>
+    <code><a href="https://cheat-sheet.streamlit.app/" target="_blank" style="color: #3498db; text-decoration: none;">https://cheat-sheet.streamlit.app/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Tkinter Cheat Sheet</strong>: Referência de bolso para criação de interfaces desktop nativas, widgets, gerenciadores de layout e eventos.</div>
+    <code><a href="https://github.com/Dvlv/Tkinter-Cheat-Sheet" target="_blank" style="color: #3498db; text-decoration: none;">https://github.com/Dvlv/Tkinter-Cheat-Sheet</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>CS50’s Introduction to Programming with Python</strong>: O curso de Harvard que é referência absoluta para fundamentos de Python.</div>
+    <code><a href="https://cs50.harvard.edu/python/" target="_blank" style="color: #3498db; text-decoration: none;">https://cs50.harvard.edu/python/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Python Fluente (2ª Edição)</strong>: O site do livro de Luciano Ramalho. Indispensável para entender as entranhas da linguagem.</div>
+    <code><a href="https://pythonfluente.com/2/" target="_blank" style="color: #3498db; text-decoration: none;">https://pythonfluente.com/2/</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Exercism (Python Track)</strong>: Plataforma prática para treinar lógica através de desafios reais com feedback de mentores.</div>
+    <code><a href="https://exercism.org/tracks/python" target="_blank" style="color: #3498db; text-decoration: none;">https://exercism.org/tracks/python</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Pandas Cheat Sheet</strong>: A folha de consulta oficial para manipulação de DataFrames e limpeza de dados brutos.</div>
+    <code><a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" target="_blank" style="color: #3498db; text-decoration: none;">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a></code>
+</div>
+
+<div class="function-block">
+    <div class="desc"><strong>Python for Data Science (Real Python)</strong>: Um roteiro de aprendizado excelente focado na aplicação prática para cientistas.</div>
+    <code><a href="https://realpython.com/learning-paths/data-science-python-basics/" target="_blank" style="color: #3498db; text-decoration: none;">https://realpython.com/learning-paths/data-science-python-basics/</a></code>
+</div>
+
+<footer>
+    2026
+</footer>
+
+</body>
+</html>
