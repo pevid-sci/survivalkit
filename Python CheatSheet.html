@@ -3,279 +3,524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Survival Kit</title>
+    <title>Python</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 950px;
+            line-height: 1.4;
+            color: #2c3e50;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #f4f7f9;
+            padding: 20px;
+            background-color: #f0f4f8;
         }
         h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #e67e22;
+            color: #1a252f;
+            border-bottom: 4px solid #e74c3c;
             padding-bottom: 10px;
             text-align: center;
-            font-size: 2.5em;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 30px;
         }
         h2 {
-            color: #d35400;
-            margin-top: 50px;
-            background: #fdf2e9;
-            padding: 12px 18px;
-            border-radius: 5px;
-            border-left: 6px solid #e67e22;
-            display: flex;
-            align-items: center;
+            color: #c0392b;
+            margin-top: 40px;
+            background: #fadbd8;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border-left: 6px solid #e74c3c;
+            font-size: 1.2em;
+            grid-column: 1 / -1; /* Ocupa toda a largura no grid */
         }
-        h2 span { margin-right: 12px; }
-        h3 {
-            color: #2980b9;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            margin-top: 35px;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 15px;
         }
         .function-block {
             background: white;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border: 1px solid #e1e8ed;
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #dce2e8;
         }
         .desc {
-            margin-bottom: 8px;
-            font-size: 1.05em;
+            margin-bottom: 5px;
+            font-size: 0.95em;
         }
         .func-name {
             font-weight: bold;
-            color: #c0392b;
-            font-family: 'Fira Code', 'Consolas', monospace;
-        }
-        .lib-name {
-            font-style: italic;
             color: #2980b9;
-            font-weight: 600;
+            font-family: 'Consolas', monospace;
+            background: #ebf5fb;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
         code {
             display: block;
-            background-color: #2d3436;
-            color: #dfe6e9;
-            padding: 12px;
-            border-radius: 5px;
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 10px;
+            border-radius: 4px;
             font-family: 'Consolas', monospace;
-            font-size: 0.92em;
+            font-size: 0.85em;
             overflow-x: auto;
-            margin-top: 5px;
-            line-height: 1.4;
+            white-space: pre;
+            line-height: 1.3;
         }
-        .comment {
-            color: #95a5a6;
-            font-style: italic;
-        }
-        .concept-card {
-            background: #eef2f7;
-            border: 1px solid #d0dbe5;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
-        }
+        .comment { color: #5c6370; font-style: italic; }
+        .keyword { color: #c678dd; font-weight: bold; }
+        .string { color: #98c379; }
+        .builtin { color: #56b6c2; }
+        .method { color: #61afef; }
     </style>
 </head>
 <body>
 
-<h1>Python Survival Kit 🐍</h1>
-<p style="text-align: center; font-style: italic;">2026</p>
+<h1>Python CheatSheet 🐍</h1>
+<p class="subtitle">Data science e health research.</p>
 
-<h2><span>🔢</span> Operadores, Lógica e Controle</h2>
+<div class="grid-container">
 
-<div class="concept-card">
-    <strong>Operadores Essenciais:</strong> <code>==</code> (Igual), <code>!=</code> (Diferente), <code>></code> (Maior), <code><</code> (Menor), <code>//</code> (Divisão Inteira), <code>%</code> (Resto), <code>**</code> (Potência).<br>
-    <strong>Lógica:</strong> <code>and</code>, <code>or</code>, <code>not</code>, <code>in</code> (está contido), <code>is</code> (identidade de memória).
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">if/elif/else</span> (<span class="lib-name">Python Base</span>): Estrutura de decisão lógica</div>
-    <code>if p_valor < 0.05:
-    status = "Significativo"
-elif p_valor < 0.1:
-    status = "Tendência"
-else:
-    status = "NS" <span class="comment"># define rótulo baseado na evidência</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">list comprehension</span> (<span class="lib-name">Python Fluente</span>): Criação concisa de listas filtradas</div>
-    <code>[x.upper() for x in colunas if "ID" not in x] <span class="comment"># formata nomes de colunas</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">match/case</span> (<span class="lib-name">Python 3.10+</span>): Pattern matching estrutural para múltiplas condições</div>
-    <code>match resultado:
-    case {"status": "ok", "valor": v}: print(v)
-    case {"status": "erro"}: print("Falha") <span class="comment"># desempacota e testa simultaneamente</span></code>
-</div>
-
-<h2><span>📦</span> Estruturas de Dados e Python Fluente</h2>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">namedtuple</span> (<span class="lib-name">collections</span>): Tuplas com nomes de campo (objetos leves)</div>
-    <code>Amostra = namedtuple('Amostra', ['id', 'grupo', 'desfecho'])
-obs = Amostra(1, 'A', 0) <span class="comment"># acessível via obs.grupo</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">zip / enumerate</span> (<span class="lib-name">Python Base</span>): Iteração paralela e com índices</div>
-    <code>for i, (par1, par2) in enumerate(zip(lista1, lista2)):
-    print(f"Par {i}: {par1}, {par2}") <span class="comment"># une listas e conta iterações</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">__getitem__ / __len__</span> (<span class="lib-name">Métodos Especiais</span>): Tornam objetos "Pythonicos" (fatiáveis e mensuráveis)</div>
-    <code>def __len__(self): return len(self._dados) <span class="comment"># permite usar len(objeto)</span></code>
-</div>
-
-<h2><span>🏗️</span> Programação Orientada a Objetos (Classes)</h2>
-
-<div class="concept-card">
-    <strong>Classe:</strong> Um molde (projeto). <strong>Objeto:</strong> Uma instância do molde.<br>
-    <strong>Atributo:</strong> Variável interna (característica). <strong>Método:</strong> Função interna (comportamento).
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">class / __init__</span> (<span class="lib-name">POO</span>): Define a estrutura e inicializa o estado do objeto</div>
-    <code>class EstudoClinico:
-    def __init__(self, n, fase):
-        self.n = n <span class="comment"># Atributo de instância</span>
-        self.fase = fase
+    <h2><span>1.</span> Python Base: Tipos, Lógica e Controle</h2>
     
-    def reportar(self):
-        return f"Fase {self.fase} com N={self.n}" <span class="comment"># Método</span></code>
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Tipos & Conversões</span></div>
+        <code><span class="builtin">type</span>(x), <span class="builtin">id</span>(x)      <span class="comment"># Retorna classe e endereço de memória</span>
+<span class="builtin">int</span>(x), <span class="builtin">float</span>(x)  <span class="comment"># Converte para inteiro / decimal</span>
+<span class="builtin">str</span>(x), <span class="builtin">bool</span>(x)   <span class="comment"># Converte para texto / booleano</span>
+<span class="builtin">isinstance</span>(x, <span class="builtin">int</span>)<span class="comment"># True se x for inteiro</span>
+<span class="builtin">round</span>(3.1415, 2)  <span class="comment"># Arredonda para 2 casas (3.14)</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Operadores Lógicos & Identidade</span></div>
+        <code>a == b, a != b    <span class="comment"># Igual, Diferente</span>
+a &gt; b, a &lt;= b     <span class="comment"># Maior, Menor ou igual</span>
+a <span class="keyword">and</span> b, a <span class="keyword">or</span> b   <span class="comment"># E, Ou lógico</span>
+<span class="keyword">not</span> a             <span class="comment"># Inverte booleano</span>
+a <span class="keyword">is</span> b, a <span class="keyword">is not</span> b<span class="comment"># Compara se é o mesmo objeto na memória</span>
+x <span class="keyword">in</span> lista        <span class="comment"># True se x estiver contido no iterável</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Controle de Fluxo (If / Else)</span></div>
+        <code><span class="keyword">if</span> p_valor &lt; 0.05:
+    <span class="builtin">print</span>(<span class="string">"Sig"</span>)
+<span class="keyword">elif</span> p_valor &lt; 0.10:
+    <span class="builtin">print</span>(<span class="string">"Tend"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"NS"</span>)
+<span class="comment"># Operador Ternário</span>
+status = <span class="string">"Alta"</span> <span class="keyword">if</span> vivo <span class="keyword">else</span> <span class="string">"Óbito"</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Loops (For / While)</span></div>
+        <code><span class="keyword">for</span> item <span class="keyword">in</span> sequencia:
+    <span class="keyword">if</span> item == <span class="string">"pula"</span>: <span class="keyword">continue</span>
+    <span class="keyword">if</span> item == <span class="string">"para"</span>: <span class="keyword">break</span>
+<span class="keyword">while</span> contador &lt; 10:
+    contador += 1
+<span class="keyword">for</span> i, val <span class="keyword">in</span> <span class="builtin">enumerate</span>(lista): <span class="comment"># Loop com índice numérico</span>
+<span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="builtin">zip</span>(list1, list2):  <span class="comment"># Itera em 2 listas simultaneamente</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Tratamento de Erros (Try/Except)</span></div>
+        <code><span class="keyword">try</span>:
+    resultado = 10 / 0
+<span class="keyword">except</span> ZeroDivisionError:
+    <span class="builtin">print</span>(<span class="string">"Erro matematico"</span>)
+<span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+    <span class="builtin">print</span>(f<span class="string">"Erro geral: {e}"</span>)
+<span class="keyword">finally</span>:
+    <span class="builtin">print</span>(<span class="string">"Roda sempre, dando erro ou não"</span>)</code>
+    </div>
+
+    <h2><span>2.</span> Estruturas de Dados e Comprehensions</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Strings (Textos)</span></div>
+        <code>s[0:5], s[::-1]   <span class="comment"># Fatiamento e inversão</span>
+s.upper(), s.lower()<span class="comment"># Maiúsculo, Minúsculo</span>
+s.strip(), s.split()<span class="comment"># Remove espaços laterais, Quebra em lista</span>
+s.replace(a, b)   <span class="comment"># Substitui 'a' por 'b'</span>
+s.startswith(<span class="string">"A"</span>) <span class="comment"># True se começa com A</span>
+<span class="string">"-"</span>.join(lista)   <span class="comment"># Junta lista de strings com hífens</span>
+f<span class="string">"N={tamanho}"</span>    <span class="comment"># F-String (Interpolação de variáveis)</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Listas [ ]</span></div>
+        <code>l.append(x)       <span class="comment"># Adiciona no final</span>
+l.extend([x, y])  <span class="comment"># Adiciona múltiplos itens no final</span>
+l.insert(0, x)    <span class="comment"># Insere na posição 0</span>
+l.pop(), l.pop(0) <span class="comment"># Remove o último / Remove o primeiro</span>
+l.remove(x)       <span class="comment"># Remove a 1ª ocorrência de x</span>
+l.sort()          <span class="comment"># Ordena in-loco (crescente)</span>
+l.count(x)        <span class="comment"># Conta quantas vezes x aparece</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Dicionários { }</span></div>
+        <code>d[chave] = valor  <span class="comment"># Adiciona ou atualiza</span>
+d.get(chave, 0)   <span class="comment"># Busca. Se não achar, retorna 0 (evita erro)</span>
+d.keys()          <span class="comment"># Lista as chaves</span>
+d.values()        <span class="comment"># Lista os valores</span>
+d.items()         <span class="comment"># Tuplas de (chave, valor)</span>
+d.update(d2)      <span class="comment"># Funde com outro dicionário d2</span>
+d.pop(chave)      <span class="comment"># Remove e retorna o valor</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Tuplas () e Sets {}</span></div>
+        <code>t = (1, 2)        <span class="comment"># Imutável. Usada p/ dados fixos/coordenadas</span>
+s = {1, 2, 2}     <span class="comment"># Conjunto. Vira {1, 2} (remove duplicatas)</span>
+s.add(3)          <span class="comment"># Adiciona no set</span>
+s1 | s2           <span class="comment"># União de dois sets</span>
+s1 & s2           <span class="comment"># Intersecção (o que tem em ambos)</span>
+s1 - s2           <span class="comment"># Diferença (tem no s1 mas não no s2)</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">List & Dict Comprehensions</span></div>
+        <code><span class="comment"># [expressão for item in iterável if condição]</span>
+quadrados = [x**2 <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(10)]
+pares = [x <span class="keyword">for</span> x <span class="keyword">in</span> lista <span class="keyword">if</span> x % 2 == 0]
+<span class="comment"># {chave: valor for item in iterável}</span>
+dic_quad = {x: x**2 <span class="keyword">for</span> x <span class="keyword">in</span> <span class="builtin">range</span>(5)}
+<span class="comment"># If/Else dentro da list comprehension</span>
+rotulo = [<span class="string">"Pos"</span> <span class="keyword">if</span> x>0 <span class="keyword">else</span> <span class="string">"Neg"</span> <span class="keyword">for</span> x <span class="keyword">in</span> lista]</code>
+    </div>
+
+    <h2><span>3.</span> Funções, Itertools e Collections</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Criação de Funções (def / lambda)</span></div>
+        <code><span class="keyword">def</span> soma(a, b=0): <span class="comment"># b tem valor default</span>
+    <span class="keyword">return</span> a + b
+<span class="keyword">def</span> sum_all(*args): <span class="keyword">return</span> <span class="builtin">sum</span>(args)  <span class="comment"># N argumentos</span>
+<span class="keyword">def</span> config(**kwargs): <span class="builtin">print</span>(kwargs)   <span class="comment"># N argumentos nomeados</span>
+f_anonima = <span class="keyword">lambda</span> x, y: x + y        <span class="comment"># Função em 1 linha</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Built-ins Úteis</span></div>
+        <code><span class="builtin">len</span>(obj)          <span class="comment"># Tamanho</span>
+<span class="builtin">max</span>(l), <span class="builtin">min</span>(l)    <span class="comment"># Máximo e Mínimo</span>
+<span class="builtin">sum</span>(l)            <span class="comment"># Somatório</span>
+<span class="builtin">abs</span>(x)            <span class="comment"># Valor absoluto</span>
+<span class="builtin">all</span>(lista)        <span class="comment"># True se TODOS os itens forem True</span>
+<span class="builtin">any</span>(lista)        <span class="comment"># True se ALGUM item for True</span>
+<span class="builtin">map</span>(func, lista)  <span class="comment"># Aplica função a todos os itens</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Módulos: math & collections</span></div>
+        <code><span class="keyword">import</span> math
+math.isnan(x)     <span class="comment"># Checa se é NaN puro</span>
+math.log(x), math.exp(x) <span class="comment"># Logaritmo natural e Exponencial</span>
+
+<span class="keyword">from</span> collections <span class="keyword">import</span> Counter, defaultdict
+contagem = Counter([<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>]) <span class="comment"># Retorna {'a':2, 'b':1}</span>
+d = defaultdict(<span class="builtin">list</span>) <span class="comment"># Dicionário que cria lista vazia se chave não existir</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Datas e Tempos (Natível)</span></div>
+        <code><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta
+hoje = datetime.now()
+data_str = hoje.strftime(<span class="string">"%Y-%m-%d"</span>) <span class="comment"># Formata para texto</span>
+ontem = hoje - timedelta(days=1)     <span class="comment"># Aritmética de datas</span>
+data_obj = datetime.strptime(<span class="string">"2026-03-21"</span>, <span class="string">"%Y-%m-%d"</span>)</code>
+    </div>
+
+    <h2><span>4.</span> PANDAS: Leitura, Escrita e Inspeção Geral</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Importar / Exportar</span></div>
+        <code><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+df = pd.read_csv(<span class="string">"data.csv"</span>, sep=<span class="string">";"</span>, encoding=<span class="string">"utf-8"</span>)
+df = pd.read_excel(<span class="string">"data.xlsx"</span>, sheet_name=<span class="string">"Plan1"</span>)
+df = pd.read_sql_query(<span class="string">"SELECT * FROM table"</span>, con)
+df = pd.read_clipboard() <span class="comment"># Lê dados copiados no Ctrl+C</span>
+df.to_csv(<span class="string">"out.csv"</span>, index=<span class="keyword">False</span>)
+df.to_parquet(<span class="string">"out.parquet"</span>) <span class="comment"># Formato super rápido/leve</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Inspeção do DataFrame</span></div>
+        <code>df.head(), df.tail()   <span class="comment"># Primeiras/Últimas linhas</span>
+df.sample(5)           <span class="comment"># 5 linhas aleatórias</span>
+df.info()              <span class="comment"># Estrutura, Dtypes, Memória</span>
+df.describe(include=<span class="string">"all"</span>)<span class="comment"># Estatística descritiva</span>
+df.shape               <span class="comment"># Tupla (linhas, colunas)</span>
+df.columns             <span class="comment"># Index com nomes das colunas</span>
+df.index               <span class="comment"># Index das linhas</span>
+df.dtypes              <span class="comment"># Tipos de dados de cada coluna</span></code>
+    </div>
+
+    <h2><span>5.</span> PANDAS: Filtros, Seleção (Slicing) e Consultas</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Seleção Básica (Colunas e Linhas)</span></div>
+        <code>df[<span class="string">'idade'</span>]            <span class="comment"># Retorna Series (1 col)</span>
+df[[<span class="string">'idade'</span>, <span class="string">'sexo'</span>]]  <span class="comment"># Retorna DataFrame (2 cols)</span>
+df.iloc[0]             <span class="comment"># Primeira linha inteira</span>
+df.iloc[-1]            <span class="comment"># Última linha inteira</span>
+df.iloc[0:5, 0:3]      <span class="comment"># Linhas 0 a 4, Colunas 0 a 2</span>
+df.loc[100, <span class="string">'idade'</span>]   <span class="comment"># Pega linha cujo rótulo/index é 100, coluna idade</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Filtros Booleanos (Condicionais)</span></div>
+        <code>df[df[<span class="string">'idade'</span>] &gt; 60]     <span class="comment"># Simples</span>
+df[(df[<span class="string">'A'</span>]&gt;1) & (df[<span class="string">'B'</span>]&lt;5)] <span class="comment"># Múltiplas condições (E)</span>
+df[(df[<span class="string">'A'</span>]&gt;1) | (df[<span class="string">'B'</span>]&lt;5)] <span class="comment"># Múltiplas condições (OU)</span>
+df[~df[<span class="string">'obito'</span>] == 1]      <span class="comment"># Negativo (Não é óbito)</span>
+df[df[<span class="string">'UF'</span>].isin([<span class="string">'RS'</span>, <span class="string">'SP'</span>])] <span class="comment"># Está contido na lista</span>
+df[df[<span class="string">'UF'</span>].isnull()]      <span class="comment"># Apenas linhas com UF vazia</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Query (Filtro por String) e Nlargest</span></div>
+        <code>df.query(<span class="string">'idade &gt; 60 and UF == "RS"'</span>) <span class="comment"># Mais limpo de ler</span>
+limite = 50
+df.query(<span class="string">'idade &gt; @limite'</span>) <span class="comment"># Usa variável externa com @</span>
+df.nlargest(5, <span class="string">'salario'</span>)   <span class="comment"># 5 linhas com maiores salários</span>
+df.nsmallest(5, <span class="string">'idade'</span>)    <span class="comment"># 5 linhas com menores idades</span></code>
+    </div>
+
+    <h2><span>6.</span> PANDAS: Limpeza, Nulos e Modificação de Tabelas</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Tratamento de Missing Data (NaN)</span></div>
+        <code>df.isna().sum()            <span class="comment"># Soma de nulos por coluna</span>
+df.dropna()                <span class="comment"># Remove qualquer linha c/ NaN</span>
+df.dropna(subset=[<span class="string">'obito'</span>])<span class="comment"># Remove se NaN apenas na col 'obito'</span>
+df.fillna(0)               <span class="comment"># Troca todos NaN por 0</span>
+df[<span class="string">'PAS'</span>].fillna(df[<span class="string">'PAS'</span>].mean()) <span class="comment"># Imputa c/ média</span>
+df.ffill(), df.bfill()     <span class="comment"># Preenche com valor anterior / próximo</span>
+df.interpolate()           <span class="comment"># Interpolação matemática p/ séries</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Modificando Colunas & Tipos</span></div>
+        <code>df.rename(columns={<span class="string">'old'</span>: <span class="string">'new'</span>}) <span class="comment"># Muda nome</span>
+df.drop(columns=[<span class="string">'A'</span>, <span class="string">'B'</span>])         <span class="comment"># Deleta colunas</span>
+df.drop(index=[0, 1])               <span class="comment"># Deleta linhas 0 e 1</span>
+df[<span class="string">'A'</span>] = df[<span class="string">'A'</span>].astype(<span class="builtin">str</span>)       <span class="comment"># Converte tipo</span>
+df[<span class="string">'data'</span>] = pd.to_datetime(df[<span class="string">'data'</span>]) <span class="comment"># Converte p/ Data</span>
+df[<span class="string">'num'</span>] = pd.to_numeric(df[<span class="string">'num'</span>], errors=<span class="string">'coerce'</span>) <span class="comment"># Força numero, vira NaN se errar</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Duplicatas & Ordenação</span></div>
+        <code>df.duplicated().sum()             <span class="comment"># Conta linhas duplicadas</span>
+df.drop_duplicates()              <span class="comment"># Remove linhas 100% iguais</span>
+df.drop_duplicates(subset=[<span class="string">'id'</span>], keep=<span class="string">'last'</span>) <span class="comment"># Mantém último registro</span>
+df.sort_values(<span class="string">'idade'</span>, ascending=<span class="keyword">False</span>) <span class="comment"># Ordem decrescente</span>
+df.sort_values([<span class="string">'grupo'</span>, <span class="string">'idade'</span>])<span class="comment"># Ordena por múltiplas</span>
+df.reset_index(drop=<span class="keyword">True</span>)         <span class="comment"># Refaz o índice numérico 0,1,2...</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Matemática Vetorizada e Lógica Linha-a-Linha</span></div>
+        <code>df[<span class="string">'imc'</span>] = df[<span class="string">'peso'</span>] / (df[<span class="string">'alt'</span>]**2) <span class="comment"># Cria coluna matematicamente</span>
+df[<span class="string">'grupo'</span>].replace({<span class="string">'A'</span>:1, <span class="string">'B'</span>:0})       <span class="comment"># Dicionário de substituição</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+df[<span class="string">'risco'</span>] = np.where(df[<span class="string">'idade'</span>]>60, <span class="string">'Alto'</span>, <span class="string">'Baixo'</span>) <span class="comment"># Equivalente ao ifelse() do R</span>
+df[<span class="string">'calc'</span>] = df.apply(<span class="keyword">lambda</span> row: func(row[<span class="string">'A'</span>], row[<span class="string">'B'</span>]), axis=1) <span class="comment"># Aplica func complexa nas linhas</span></code>
+    </div>
+
+    <h2><span>7.</span> PANDAS: Métodos `.str` e `.dt` (Acessadores)</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">O Acessador .str (Textos)</span></div>
+        <code>df[<span class="string">'nome'</span>] = df[<span class="string">'nome'</span>].str.upper()   <span class="comment"># Tudo maiúsculo</span>
+df[<span class="string">'nome'</span>].str.strip()                <span class="comment"># Limpa espaços em branco</span>
+df[<span class="string">'nome'</span>].str.contains(<span class="string">'Silva'</span>)      <span class="comment"># Filtro: Contém a palavra?</span>
+df[<span class="string">'nome'</span>].str.startswith(<span class="string">'A'</span>)        <span class="comment"># Inicia com A?</span>
+df[<span class="string">'cod'</span>].str.extract(<span class="string">r'(\d+)'</span>)       <span class="comment"># Extrai apenas números via Regex</span>
+df[<span class="string">'sobrenome'</span>] = df[<span class="string">'nome'</span>].str.split(<span class="string">' '</span>).str[-1] <span class="comment"># Pega a última palavra</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">O Acessador .dt (Séries Temporais)</span></div>
+        <code>df[<span class="string">'ano'</span>] = df[<span class="string">'data'</span>].dt.year        <span class="comment"># Extrai o ano inteiro</span>
+df[<span class="string">'mes'</span>] = df[<span class="string">'data'</span>].dt.month       <span class="comment"># Extrai o mês (1-12)</span>
+df[<span class="string">'dia_sem'</span>] = df[<span class="string">'data'</span>].dt.day_name() <span class="comment"># Nome do dia (Monday)</span>
+df[<span class="string">'duracao_dias'</span>] = (df[<span class="string">'data_alta'</span>] - df[<span class="string">'data_int'</span>]).dt.days <span class="comment"># Calc tempo</span>
+df.set_index(<span class="string">'data'</span>).resample(<span class="string">'M'</span>).sum() <span class="comment"># Agrupa por Mês (Mensal)</span></code>
+    </div>
+
+    <h2><span>8.</span> PANDAS: Agrupamento, Cruzamento e Reshape</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Groupby e Estatísticas (Summarise)</span></div>
+        <code>df[<span class="string">'cat'</span>].value_counts(normalize=<span class="keyword">True</span>)<span class="comment"># Frequência relativa (%)</span>
+df.groupby(<span class="string">'grupo'</span>)[<span class="string">'idade'</span>].mean()   <span class="comment"># Média de 1 coluna por grupo</span>
+df.groupby([<span class="string">'grupo'</span>, <span class="string">'sexo'</span>]).size()  <span class="comment"># Contagem em grupos duplos</span>
+
+<span class="comment"># Agg múltiplo (A "Tabela 1" do artigo)</span>
+df.groupby(<span class="string">'braco'</span>).agg({
+    <span class="string">'idade'</span>: [<span class="string">'mean'</span>, <span class="string">'std'</span>],
+    <span class="string">'pas'</span>: <span class="string">'median'</span>,
+    <span class="string">'obito'</span>: <span class="string">'sum'</span>
+}).reset_index()</code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Merge, Join e Concat</span></div>
+        <code><span class="comment"># Empilhar tabelas verticalmente (rbind)</span>
+df_full = pd.concat([df1, df2], ignore_index=<span class="keyword">True</span>)
+
+<span class="comment"># Cruzamento de tabelas (merge / join)</span>
+<span class="comment"># how: 'left', 'right', 'inner', 'outer'</span>
+pd.merge(pacientes, exames, on=<span class="string">"id"</span>, how=<span class="string">"left"</span>)
+pd.merge(df1, df2, left_on=<span class="string">"id_pac"</span>, right_on=<span class="string">"pront"</span>)</code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Reshape: Pivot e Melt (Wide vs Long)</span></div>
+        <code><span class="comment"># Transforma formato LONGO para LARGO (Tabela Dinâmica)</span>
+df_wide = df.pivot_table(index=<span class="string">'id'</span>, columns=<span class="string">'tempo'</span>, values=<span class="string">'pas'</span>)
+
+<span class="comment"># Transforma formato LARGO para LONGO (Unpivot)</span>
+df_long = pd.melt(df_wide, id_vars=[<span class="string">'id'</span>, <span class="string">'idade'</span>], 
+                  value_vars=[<span class="string">'pas_t0'</span>, <span class="string">'pas_t1'</span>], 
+                  var_name=<span class="string">'tempo'</span>, value_name=<span class="string">'pressao'</span>)</code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Bins (Categorização de Numéricas)</span></div>
+        <code><span class="comment"># Cria faixas etárias fixas</span>
+df[<span class="string">'faixa'</span>] = pd.cut(df[<span class="string">'idade'</span>], bins=[0, 18, 60, 100], 
+                     labels=[<span class="string">'Jovem'</span>, <span class="string">'Adulto'</span>, <span class="string">'Idoso'</span>])
+<span class="comment"># Cria quartis perfeitos (Mesma quantidade em cada grupo)</span>
+df[<span class="string">'quartil_renda'</span>] = pd.qcut(df[<span class="string">'renda'</span>], q=4)</code>
+    </div>
+
+    <h2><span>9.</span> Bioestatística, Epi e Modelagem (Scipy, Statsmodels, Lifelines)</h2>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Scipy.Stats (Testes Clássicos)</span></div>
+        <code><span class="keyword">from</span> scipy <span class="keyword">import</span> stats
+stats.ttest_ind(grupoA, grupoB)       <span class="comment"># Teste T Independente</span>
+stats.mannwhitneyu(grupoA, grupoB)    <span class="comment"># U de Mann-Whitney (Não param)</span>
+stats.chi2_contingency(tabela_cruz)   <span class="comment"># Qui-Quadrado</span>
+stats.fisher_exact(tabela_2x2)        <span class="comment"># Exato de Fisher</span>
+stats.pearsonr(x, y)                  <span class="comment"># Correlação de Pearson</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Statsmodels (Regressões Estilo R)</span></div>
+        <code><span class="keyword">import</span> statsmodels.formula.api <span class="keyword">as</span> smf
+<span class="comment"># Regressão Linear Simples/Múltipla</span>
+mod = smf.ols(<span class="string">"pas ~ idade + C(sexo)"</span>, data=df).fit()
+<span class="builtin">print</span>(mod.summary())
+
+<span class="comment"># Regressão Logística (Odds Ratio)</span>
+mod_log = smf.logit(<span class="string">"obito ~ tratamento + idade"</span>, data=df).fit()
+odds_ratios = np.exp(mod_log.params)  <span class="comment"># Extrai os ORs</span></code>
+    </div>
+
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Lifelines (Análise de Sobrevivência)</span></div>
+        <code><span class="keyword">from</span> lifelines <span class="keyword">import</span> KaplanMeierFitter, CoxPHFitter
+<span class="comment"># Kaplan-Meier (Curva)</span>
+kmf = KaplanMeierFitter()
+kmf.fit(duracoes=df[<span class="string">'tempo'</span>], event_observed=df[<span class="string">'evento'</span>])
+kmf.plot_survival_function()
+
+<span class="comment"># Modelo de Cox Proporcional (Hazard Ratios)</span>
+cph = CoxPHFitter()
+cph.fit(df, duration_col=<span class="string">'tempo'</span>, event_col=<span class="string">'evento'</span>)
+cph.print_summary()
+cph.plot() <span class="comment"># Plota o Forest Plot dos HRs</span></code>
+    </div>
+
 </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">@property</span> (<span class="lib-name">Decorador</span>): Transforma um método em um atributo de leitura (calculado)</div>
-    <code>@property
-def taxa_sucesso(self):
-    return self.eventos / self.n <span class="comment"># acessado como objeto.taxa_sucesso</span></code>
-</div>
 
-<h2><span>📊</span> Manipulação e Análise (Pandas & NumPy)</h2>
+<div class="grid-container">
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">read_csv / to_excel</span> (<span class="lib-name">pandas</span>): I/O de dados de alta performance</div>
-    <code>df = pd.read_csv("data.csv", sep=";", encoding="latin-1") <span class="comment"># importa base médica</span></code>
-</div>
+    <h2><span>10.</span> Inferência Causal e Modelagem Gráfica</h2>
+    
+    <div class="function-block">
+        <div class="desc"><span class="func-name">CausalModel</span> (<span class="lib-name">dowhy</span>): Framework p/ efeitos causais</div>
+        <code>model = CausalModel(data=df, treatment='T', outcome='Y', common_causes=['W'])
+model.identify_effect() <span class="comment"># Acha o caminho causal via backdoor criterion</span></code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">loc / iloc</span> (<span class="lib-name">pandas</span>): Seleção por rótulo ou por posição</div>
-    <code>df.loc[df['idade'] > 60, ['id', 'status']] <span class="comment"># filtra linhas e colunas</span></code>
-</div>
+    <div class="function-block">
+        <div class="desc"><span class="func-name">DAG</span> (<span class="lib-name">causalgraphicalmodels</span>): Grafos Acíclicos Direcionados</div>
+        <code>dag = DAG(nodes=["X", "Y", "Z"], edges=[("X", "Y"), ("Z", "X"), ("Z", "Y")])
+dag.draw() <span class="comment"># Visualiza variáveis de confusão/colisão</span></code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">groupby / agg</span> (<span class="lib-name">pandas</span>): Agregamento e sumário estatístico por grupo</div>
-    <code>df.groupby('braço').agg({'PAS': ['mean', 'std'], 'evento': 'sum'}) <span class="comment"># tabela descritiva</span></code>
-</div>
+    <h2><span>11.</span> Interfaces de Usuário (Web & Desktop)</h2>
+    
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Streamlit</span> (<span class="lib-name">Web Apps / Dashboards</span>)</div>
+        <code><span class="keyword">import</span> streamlit <span class="keyword">as</span> st
+st.title(<span class="string">"Calculadora de Risco"</span>)
+valor = st.sidebar.number_input(<span class="string">"Digite o IMC"</span>)
+<span class="keyword">if</span> st.button(<span class="string">"Calcular"</span>): 
+    st.write(f<span class="string">"Risco: {valor * 1.5}"</span>) <span class="comment"># App instantâneo</span></code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">melt / pivot_table</span> (<span class="lib-name">pandas</span>): Reshape de dados (Largo vs. Longo)</div>
-    <code>df_longo = pd.melt(df, id_vars=['id'], value_vars=['t0', 't1', 't2']) <span class="comment"># prepara para Mixed Models</span></code>
-</div>
-
-<h2><span>🔬</span> Bioestatística, Sobrevivência e Meta-Pesquisa</h2>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">ttest_ind / f_oneway</span> (<span class="lib-name">scipy.stats</span>): Testes de hipótese paramétricos</div>
-    <code>stats.ttest_ind(grupo_a, grupo_b, equal_var=False) <span class="comment"># Teste t de Welch</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">logit / ols</span> (<span class="lib-name">statsmodels</span>): Modelagem de regressão via fórmulas (estilo R)</div>
-    <code>smf.logit("obito ~ tratamento + idade + bmi", data=df).fit().summary() <span class="comment"># calcula OR ajustada</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">KaplanMeierFitter</span> (<span class="lib-name">lifelines</span>): Estima a função de sobrevivência</div>
-    <code>kmf.fit(duracao, event_observed=censura).plot_survival_function() <span class="comment"># gera curva de KM</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">CoxPHFitter</span> (<span class="lib-name">lifelines</span>): Regressão de riscos proporcionais de Cox</div>
-    <code>cph.fit(df, duration_col='tempo', event_col='evento') <span class="comment"># extrai Hazard Ratio (HR)</span></code>
-</div>
-
-<h2><span>🕸️</span> Inferência Causal e Modelagem Gráfica</h2>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">CausalModel</span> (<span class="lib-name">dowhy</span>): Framework para estimativa de efeitos causais</div>
-    <code>model = CausalModel(data=df, treatment='T', outcome='Y', common_causes=['W'])
-model.identify_effect() <span class="comment"># encontra o caminho causal via backdoor criterion</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">DAG</span> (<span class="lib-name">causalgraphicalmodels</span>): Definição e visualização de grafos acíclicos</div>
-    <code>dag = DAG(nodes=["X", "Y", "Z"], edges=[("X", "Y"), ("Z", "X"), ("Z", "Y")])
-dag.draw() <span class="comment"># visualiza estruturas de confusão e colisão</span></code>
-</div>
-
-<h2><span>🖥️</span> Interfaces de Usuário (Web & Desktop)</h2>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">sidebar / slider / button</span> (<span class="lib-name">streamlit</span>): Criação de Dashboards interativos</div>
-    <code>st.title("Calculadora de Risco")
-valor = st.sidebar.number_input("Digite o IMC")
-if st.button("Calcular"): st.write(f"Risco: {valor * 1.5}") <span class="comment"># app web instantâneo</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">Tk / Label / Entry</span> (<span class="lib-name">tkinter</span>): Interface desktop nativa</div>
-    <code>janela = Tk()
-Label(janela, text="Nome do Paciente:").pack()
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Tkinter</span> (<span class="lib-name">Desktop Nativo</span>)</div>
+        <code><span class="keyword">from</span> tkinter <span class="keyword">import</span> Tk, Label, Entry
+janela = Tk()
+Label(janela, text=<span class="string">"Paciente:"</span>).pack()
 Entry(janela).pack()
-janela.mainloop() <span class="comment"># loop de interface local</span></code>
-</div>
+janela.mainloop() <span class="comment"># Roda o loop da interface</span></code>
+    </div>
 
-<h2><span>🌐</span> APIs, Web Scraping e Dados</h2>
+    <h2><span>12.</span> APIs, Web Scraping e Dados Externos</h2>
+    
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Requests</span> (<span class="lib-name">Consumo de APIs REST</span>)</div>
+        <code><span class="keyword">import</span> requests
+r = requests.get(<span class="string">"https://clinicaltrials.gov/api/v2/studies"</span>)
+dados = r.json() <span class="comment"># Captura metadados como dicionário</span></code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">requests.get / .json()</span> (<span class="lib-name">requests</span>): Consumo de dados de APIs externas</div>
-    <code>r = requests.get("https://clinicaltrials.gov/api/v2/studies?query.term=COVID-19")
-dados = r.json() <span class="comment"># captura metadados de ensaios clínicos</span></code>
-</div>
+    <div class="function-block">
+        <div class="desc"><span class="func-name">BeautifulSoup</span> (<span class="lib-name">bs4 - Web Scraping</span>)</div>
+        <code><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup
+soup = BeautifulSoup(html, <span class="string">'html.parser'</span>)
+links = [a[<span class="string">'href'</span>] <span class="keyword">for</span> a <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>, href=<span class="keyword">True</span>)]</code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">BeautifulSoup</span> (<span class="lib-name">bs4</span>): Extração de dados de páginas HTML (Scraping)</div>
-    <code>soup = BeautifulSoup(html, 'html.parser')
-links = [a['href'] for a in soup.find_all('a', href=True)] <span class="comment"># minera links de artigos</span></code>
-</div>
+    <h2><span>13.</span> Utilitários e Organização de Projeto</h2>
+    
+    <div class="function-block">
+        <div class="desc"><span class="func-name">Pathlib</span> (<span class="lib-name">Caminhos de Arquivo Seguros</span>)</div>
+        <code><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path
+base = Path(<span class="string">"projeto/dados"</span>)
+arq = base / <span class="string">"pacientes.csv"</span> <span class="comment"># Resolve barras automaticamente</span></code>
+    </div>
 
-<h2><span>🛠️</span> Utilitários e Organização de Projeto</h2>
+    <div class="function-block">
+        <div class="desc"><span class="func-name">RegEx & Logging</span> (<span class="lib-name">re, logging</span>)</div>
+        <code><span class="keyword">import</span> re, logging
+<span class="comment"># RegEx: Remove citações estilo [1], [2] do texto</span>
+texto = re.sub(<span class="string">r"\[\d+\]"</span>, <span class="string">""</span>, artigo) 
+<span class="comment"># Logs: Rastro de execução p/ debug</span>
+logging.basicConfig(level=logging.INFO)
+logging.info(<span class="string">"Processamento finalizado com sucesso"</span>)</code>
+    </div>
 
-<div class="function-block">
-    <div class="desc"><span class="func-name">Path</span> (<span class="lib-name">pathlib</span>): Manipulação de arquivos e caminhos agnóstica ao SO</div>
-    <code>base_path = Path("projeto/dados")
-arq = base_path / "pacientes.csv" <span class="comment"># concatena caminhos de forma segura</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">re.search / re.sub</span> (<span class="lib-name">re</span>): Expressões regulares para limpeza de texto</div>
-    <code>limpo = re.sub(r"\[\d+\]", "", texto_artigo) <span class="comment"># remove citações estilo [1, 2]</span></code>
-</div>
-
-<div class="function-block">
-    <div class="desc"><span class="func-name">logging.basicConfig</span> (<span class="lib-name">logging</span>): Registro de logs para monitoramento de scripts</div>
-    <code>logging.info("Processamento da base iniciado") <span class="comment"># gera rastro para depuração</span></code>
 </div>
 
 
@@ -307,11 +552,6 @@ arq = base_path / "pacientes.csv" <span class="comment"># concatena caminhos de 
 </div>
 
 <div class="function-block">
-    <div class="desc"><strong>Exercism (Python Track)</strong>: Plataforma prática para treinar lógica através de desafios reais com feedback de mentores.</div>
-    <code><a href="https://exercism.org/tracks/python" target="_blank" style="color: #3498db; text-decoration: none;">https://exercism.org/tracks/python</a></code>
-</div>
-
-<div class="function-block">
     <div class="desc"><strong>Pandas Cheat Sheet</strong>: A folha de consulta oficial para manipulação de DataFrames e limpeza de dados brutos.</div>
     <code><a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" target="_blank" style="color: #3498db; text-decoration: none;">https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf</a></code>
 </div>
@@ -330,7 +570,7 @@ arq = base_path / "pacientes.csv" <span class="comment"># concatena caminhos de 
             O "Pronto-Socorro". Excelente para fixar sintaxe básica, loops e lógica rápida (Katas).
         </li>
         <li>
-            <strong><a href="https://exercism.org" target="_blank">Exercism</a>:</strong> 
+            <strong><a href="https://exercism.org/tracks/python" target="_blank">Exercism</a>:</strong> 
             A "Residência Médica". Focado em boas práticas, arquitetura de código e conta com mentoria humana para o "jeito Pythonico".
         </li>
         <li>
